@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>💖 Something hehe</title>
+  <style>
+    body {
+  margin: 0;
+  overflow-y: auto; /* allow vertical scrolling */
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+.container {
+  width: 100%;
+  min-height: 100vh; /* allow content to grow beyond viewport */
+  position: relative;
+  background: linear-gradient(-45deg, 
+      #ff9a9e, 
+      #ff758c, 
+      #ff7eb3, 
+      #ff4e8c);
+  background-size: 400% 400%;
+  animation: gradientBG 8s ease infinite;
+  padding-bottom: 50px; /* extra space for scroll comfort */
+}
+
+    /* Falling hearts */
+    .heart {
+      position: fixed;
+      top: -50px;
+      font-size: 24px;
+      color: crimson;
+      animation: fall linear infinite;
+      z-index: 0;
+    }
+    @keyframes fall {
+      to { transform: translateY(100vh); }
+    }
+
+    /* Card styling */
+    .card {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      text-align: center;
+      min-width: 320px;
+      z-index: 10;
+      border: 4px solid pink;
+      background-image: linear-gradient(135deg, #fff 60%, #ffe6f0);
+      transition: all 0.4s ease;
+    }
+
+    .card img {
+      max-width: 55%;
+      border-radius: 15px;
+      border: 3px dashed hotpink;
+      box-shadow: 0 4px 12px rgba(255,105,180,0.4);
+      transition: transform 0.3s ease;
+    }
+
+    .card img:hover {
+      transform: scale(1.05) rotate(-2deg);
+    }
+
+    .buttons {
+      margin-top: 15px;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 5px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    /* Hover animations */
+    #yesBtn { background: #4CAF50; color: white; }
+    #yesBtn:hover { background: #45a049; transform: scale(1.2) rotate(3deg); }
+
+    #noBtn { background: #f44336; color: white; position: relative; }
+    #noBtn:hover { background: #e53935; transform: scale(1.2) rotate(-3deg); }
+
+    /* Creative static text */
+    .static-text {
+      font-family: "Brush Script MT", cursive;
+      font-size: 28px;
+      color: hotpink;
+      margin-top: 15px;
+      text-shadow: 2px 2px 4px rgba(255,105,180,0.5);
+      animation: heartbeat 1.5s infinite;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    /* Changeable note styling */
+    #note {
+      font-size: 20px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 15px;
+    }
+#card2 h2 { text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4); }
+  </style>
+</head>
+<body>
+<section class="container">
+<div id="card1" class="card">
+  <p id="note">hiii (try clicking no 20 times hehe)</p>
+  <img id="pic" src="assets/picwow.jfif" alt="Picture">
+  <div class="static-text">💖 Hello, Miss Pretty Smile. You’ve received a special message. Do you accept it? 💖</div>
+  <div class="buttons">
+    <button id="yesBtn">Yes</button>
+    <button id="noBtn">No</button>
+  </div>
+</div>
+
+<div id="card2" class="card" style="display:none;">
+  <img src="assets/card2.jfif" alt="Letter Picture">
+  <h2 style="color:crimson; font-family:'Brush Script MT', cursive;">Thanks for accepting this letter ❤️</h2>
+  <p style="font-size:20px;">Hi Ms.Pretty hehe,
+I just want to tell you something honestly, without putting any pressure on you.
+
+I admire you. The way you carry yourself, the way you smile, and just who you are as a person — it’s something I genuinely appreciate. This isn’t me expecting anything or asking for a chance. I’m not assuming anything either.
+
+I just felt that instead of keeping it to myself, I’d rather express it respectfully. You don’t need to respond to this, and there’s no pressure at all. I simply wanted to be honest about how I feel.
+
+No expectations. Just admiration.</p>
+  </div>
+</div>
+</section>
+<script>
+  // Falling hearts
+  function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.animationDuration = (3 + Math.random() * 5) + "s";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 8000);
+  }
+  setInterval(createHeart, 400);
+
+  // Card logic
+  const yesBtn = document.getElementById("yesBtn");
+  let noBtn = document.getElementById("noBtn");
+  const backBtn = document.getElementById("backBtn");
+  const card1 = document.getElementById("card1");
+  const card2 = document.getElementById("card2");
+  const pic = document.getElementById("pic");
+  const note = document.getElementById("note");
+
+  let noClicks = 0;
+
+  const pics = ["assets/pic1.jfif","assets/pic2.jfif","assets/pic3.jfif","assets/pic4.jfif","assets/pic5.jfif","assets/pic6.jfif","assets/pic7.jfif","assets/pic8.jfif","assets/pic9.jfif","assets/pic10.jfif","assets/pic11.jfif","assets/pic12.jfif","assets/pic13.jfif","assets/pic14.jfif","assets/pic15.jfif","assets/pic16.jfif","assets/pic17.jfif","assets/pic18.jfif","assets/pic19.jfif","assets/pic20.jfif"];
+  const notes = ["gotchu! you cant click no anymoreee hahaha", "something will happen hehe","just kidding dont click it","Noooooo","Dont do that to mee","Plssssss","im just kidding","The yes is right there","Plsss","Dont do this to me","Noooooo","Plsssss","Okay","Okay thats your choice",".......",":<",".....","Stop plsss","STOP",":<","(-_-)"];
+
+  function handleNoClick() {
+    noClicks++;
+    noBtn.style.left = Math.random() * 200 + "px";
+    noBtn.style.top = Math.random() * 100 + "px";
+    const index = noClicks % pics.length;
+    pic.src = pics[index];
+    note.textContent = notes[index];
+    yesBtn.style.transform = `scale(${1 + noClicks * 0.1})`;
+    if (noClicks >= 20) noBtn.remove();
+  }
+
+  noBtn.addEventListener("click", handleNoClick);
+
+  yesBtn.addEventListener("click", () => {
+    card1.style.display = "none";
+    card2.style.display = "block";
+  });
+
+  backBtn.addEventListener("click", () => {
+    card2.style.display = "none";
+    card1.style.display = "block";
+    // Reset state
+    noClicks = 0;
+    pic.src = "pic1.jpg";
+    note.textContent = "Note 1";
+    yesBtn.style.transform = "scale(1)";
+    if (!document.getElementById("noBtn")) {
+      noBtn = document.createElement("button");
+      noBtn.id = "noBtn";
+      noBtn.textContent = "No";
+      noBtn.style.background = "#f44336";
+      noBtn.style.color = "white";
+      noBtn.style.position = "relative";
+      card1.querySelector(".buttons").appendChild(noBtn);
+      noBtn.addEventListener("click", handleNoClick);
+    }
+  });
+</script>
+
+</body>
+</html>
